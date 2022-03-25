@@ -16,7 +16,7 @@ public class RomanToArabic {
         romanToArabicMap.put('M', 1000);
     }
 
-    public static int covertRomanToArabic(String stringNumber) {
+    public static int convertRomanToArabic(String stringNumber) {
         int sum = 0;
         int len = stringNumber.length() - 1;
         for (int i = 0; i < len; i++) {

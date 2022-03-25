@@ -1,5 +1,7 @@
 package com.company;
-import java.util.regex.Pattern;
+import com.company.classes.ArabicToRoman;
+import com.company.classes.RomanToArabic;
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +15,7 @@ public class Main {
 
         String operation = scanner.nextLine();
         int result = 0;
+        String strResult = "";
         int indexOfOperator = -1;
         String operator = "";
 
@@ -33,13 +36,33 @@ public class Main {
         String firstNumber = operation.substring(0,indexOfOperator);
         String secondNumber = operation.substring(indexOfOperator+1);
 
-        switch (operator) {
+        if(firstNumber.matches("[A-Z]+") && secondNumber.matches("[A-Z]+")){
+            int intFirstNumber = RomanToArabic.covertRomanToArabic(firstNumber);
+            int intSecondNumber = RomanToArabic.covertRomanToArabic(secondNumber);
+            switch (operator) {
+                case "+" -> result = intFirstNumber + intSecondNumber;
+                case "-" -> result = intFirstNumber - intSecondNumber;
+                case "*" -> result = intFirstNumber * intSecondNumber;
+                case "/" -> result = intFirstNumber / intSecondNumber;
+            }strResult = ArabicToRoman.convertArabicToRoman(result);
+            System.out.println(firstNumber+" "+operator+" "+secondNumber+" = "+strResult);
+
+        }else if(firstNumber.matches("[0-9]+") && secondNumber.matches("[0-9]+")){
+            switch (operator) {
             case "+" -> result = Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber);
             case "-" -> result = Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber);
             case "*" -> result = Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber);
             case "/" -> result = Integer.parseInt(firstNumber) / Integer.parseInt(secondNumber);
+            }System.out.println(firstNumber+" "+operator+" "+secondNumber+" = "+result);
         }
 
-        System.out.println(result);
-    }
+            else{
+                System.out.println("error");
+            }
+
+
+        }
+
+//
+
 }

@@ -1,6 +1,8 @@
 package com.company;
 import com.company.classes.ArabicToRoman;
 import com.company.classes.RomanToArabic;
+import com.company.exceptions.WrongOperatorException;
+import com.company.exceptions.WrongTypeException;
 
 import java.util.Scanner;
 
@@ -11,13 +13,17 @@ public class Main {
         System.out.println("Welcome to basic calculator");
         System.out.println("Давай жаз, Маалыматтар бир сапта берилиши керек! " +
                 "Ар бир сан жана арифметикалык операция жаңы сапта берилсе, " +
-                "андай чечимдер жараксыз деп эсептелет.");
+                "андай чечимдер жараксыз деп эсептелет." +
+                "\nКалькулятор бир эле учурда араб же рим цифралары менен гана иштей алат");
 
         String operation = scanner.nextLine();
         int result = 0;
         String strResult = "";
         int indexOfOperator = -1;
         String operator = "";
+
+
+
 
         if(operation.contains("+")){
             indexOfOperator = operation.indexOf('+');
@@ -31,6 +37,14 @@ public class Main {
         }else if(operation.contains("/")) {
             indexOfOperator = operation.indexOf('/');
             operator = "/";
+        }
+
+        if(!operator.matches(".*[-*/+].*")){
+            try {
+                throw new WrongOperatorException("+ - * / эле колдонсо болот, бул сага scientific calculator беле");
+            }catch (WrongOperatorException e){
+                System.out.println(e.getMessage());
+            }
         }
 
         String firstNumber = operation.substring(0,indexOfOperator);
@@ -57,7 +71,11 @@ public class Main {
         }
 
             else{
-                System.out.println("error");
+            try {
+                throw new WrongTypeException("Окуганды билесинби? Калькулятор бир эле учурда араб же рим цифралары менен гана иштей алат");
+            }catch (WrongTypeException e){
+                System.out.println(e.getMessage());
+            }
             }
 
 

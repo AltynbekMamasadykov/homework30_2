@@ -85,7 +85,8 @@ public class Main {
                 }System.out.println(firstNumber+" "+operator+" "+secondNumber+" = "+result);
             } else{
                 try {
-                    throw new WrongTypeException("Окуганды билесинби? Калькулятор бир эле учурда араб же рим цифралары менен гана иштей алат деп турат ко");
+                    throw new WrongTypeException("Окуганды билесинби? Калькулятор бир эле учурда араб же рим " +
+                            "цифралары менен гана иштей алат деп турат ко");
                 }catch (WrongTypeException e){
                     System.out.println(e.getMessage());
                 }

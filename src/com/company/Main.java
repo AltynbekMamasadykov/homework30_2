@@ -74,7 +74,7 @@ public class Main {
 
             //---------------- calculation with roman numerals ---------------------
 
-            if(firstNumber.matches("[A-Z]+") && secondNumber.matches("[A-Z]+")){
+            if(firstNumber.matches(".*[IVXLCDM].*") && secondNumber.matches(".*[IVXLCDM].*")){
                 int intFirstNumber = RomanToArabic.convertRomanToArabic(firstNumber);
                 int intSecondNumber = RomanToArabic.convertRomanToArabic(secondNumber);
                 switch (operator) {

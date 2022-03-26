@@ -4,7 +4,7 @@ public class Calculate {
 
 
       public  static void calculateRoman(String firstNumber,String secondNumber,String operator) {
-          String strResult = "";
+          String strResult;
           int result = 0;
           int intFirstNumber = RomanToArabic.convertRomanToArabic(firstNumber);
           int intSecondNumber = RomanToArabic.convertRomanToArabic(secondNumber);
@@ -20,7 +20,6 @@ public class Calculate {
 
 
       public static void calculateArabic(String firstNumber,String secondNumber,String opr){
-          String strResult = "";
           int result = 0;
           switch (opr) {
               case "+" -> result = Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber);

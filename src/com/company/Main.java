@@ -15,13 +15,14 @@ public class Main {
             System.out.println("Давай жаз, Маалыматтар бир сапта берилиши керек! " +
                     "Ар бир сан жана арифметикалык операция жаңы сапта берилсе, " +
                     "андай чечимдер жараксыз деп эсептелет." +
-                    "\nКалькулятор бир эле учурда араб же рим цифралары менен гана иштей алат");
+                    "\nКалькулятор бир эле учурда же араб же рим цифралары менен гана иштей алат");
 
-            //--------------- checking if entered line is empty ------------
+            //--------------- checking if entered line is empty or has whitespace ------------
 
             Scanner scanner = new Scanner(System.in);
-            String operation = scanner.nextLine();
-            if(operation==null || operation.equals("")){
+            String input = scanner.nextLine();
+            input = input.replaceAll("\\s", "");
+            if(input.equals("")){
                 try {
                     throw new EmptyLineException("Жазбайсынбы, ойундагыны окуйт дейсинби?");
                 }catch (EmptyLineException e){
@@ -32,11 +33,8 @@ public class Main {
 
             //---------------------- declaration & initialization -------------
 
-            int indexOfOperator = -1;
-            String operator = "";
-            operator = Calculate.assignOperator(operation);
-            indexOfOperator = Calculate.findIndexOfOperator(operation);
-
+            String operator = Calculate.assignOperator(input);
+            int indexOfOperator = Calculate.findIndexOfOperator(input);
 
             //-------------------- checking for valid operator -------------------
 
@@ -51,8 +49,8 @@ public class Main {
 
             //----------------- getting values of first and second operand --------
 
-            String firstNumber = operation.substring(0,indexOfOperator);
-            String secondNumber = operation.substring(indexOfOperator+1);
+            String firstNumber = input.substring(0,indexOfOperator);
+            String secondNumber = input.substring(indexOfOperator+1);
 
             //---------------- calculation with roman numerals ---------------------
 
@@ -68,7 +66,7 @@ public class Main {
 
             } else{
                 try {
-                    throw new WrongTypeException("Окуганды билесинби? Калькулятор бир эле учурда араб же рим " +
+                    throw new WrongTypeException("Окуганды билесинби? Калькулятор бир эле учурда же араб же рим " +
                             "цифралары менен гана иштей алат деп турат ко");
                 }catch (WrongTypeException e){
                     System.out.println(e.getMessage());

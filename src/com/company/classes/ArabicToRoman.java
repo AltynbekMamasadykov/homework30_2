@@ -20,7 +20,7 @@ public class ArabicToRoman {
         map.put(1, "I");
     }
     public static String convertArabicToRoman(int num) {
-        StringBuilder roman = new StringBuilder("");
+        StringBuilder roman = new StringBuilder();
         for (Integer i: map.keySet()) {
             for (int j = 1; j <= num / i; j++) {
                 roman.append(map.get(i));

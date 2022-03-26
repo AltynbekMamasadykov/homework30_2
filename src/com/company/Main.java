@@ -1,10 +1,8 @@
 package com.company;
-import com.company.classes.ArabicToRoman;
-import com.company.classes.RomanToArabic;
+import com.company.classes.Calculate;
 import com.company.exceptions.EmptyLineException;
 import com.company.exceptions.WrongOperatorException;
 import com.company.exceptions.WrongTypeException;
-
 import java.util.Scanner;
 
 public class Main {
@@ -34,12 +32,10 @@ public class Main {
 
             //---------------------- declaration & initialization -------------
 
-            int result = 0;
-            String strResult = "";
             int indexOfOperator = -1;
             String operator = "";
-            operator = assignOperator(operation);
-            indexOfOperator = findIndexOfOperator(operation);
+            operator = Calculate.assignOperator(operation);
+            indexOfOperator = Calculate.findIndexOfOperator(operation);
 
 
             //-------------------- checking for valid operator -------------------
@@ -58,36 +54,15 @@ public class Main {
             String firstNumber = operation.substring(0,indexOfOperator);
             String secondNumber = operation.substring(indexOfOperator+1);
 
-
             //---------------- calculation with roman numerals ---------------------
 
             if(firstNumber.matches(".*[IVXLCDM].*") && secondNumber.matches(".*[IVXLCDM].*")){
-                int intFirstNumber = RomanToArabic.convertRomanToArabic(firstNumber);
-                int intSecondNumber = RomanToArabic.convertRomanToArabic(secondNumber);
-                switch (operator) {
-                    case "+" -> result = intFirstNumber + intSecondNumber;
-                    case "-" -> result = intFirstNumber - intSecondNumber;
-                    case "*" -> result = intFirstNumber * intSecondNumber;
-                    case "/" -> result = intFirstNumber / intSecondNumber;
-                }strResult = ArabicToRoman.convertArabicToRoman(result);
-                System.out.println(firstNumber+" "+operator+" "+secondNumber+" = "+strResult);
+                Calculate.calculateRoman(firstNumber,secondNumber,operator);
 
             //------------------- calculation with arabic numerals --------------------
 
             }else if(firstNumber.matches("[0-9]+") && secondNumber.matches("[0-9]+")){
-                switch (operator) {
-                case "+" -> result = Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber);
-                case "-" -> result = Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber);
-                case "*" -> result = Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber);
-                    case "/" -> {
-                        try{
-                            result = Integer.parseInt(firstNumber) / Integer.parseInt(secondNumber);
-                            }catch (ArithmeticException e){
-                            System.out.println ("Бовойт! Сандар нолго болунбойт!");
-                            return;
-                        }
-                    }
-                }System.out.println(firstNumber+" "+operator+" "+secondNumber+" = "+result);
+                Calculate.calculateArabic(firstNumber,secondNumber,operator);
 
             //------------------- checking if wrong type entered ---------------------
 
@@ -101,31 +76,4 @@ public class Main {
             }
         }
 
-        //---------------------------  methods ------------------------------------
-
-        public  static String assignOperator(String str){
-            String opr = "";
-            if(str.contains("+")){
-                opr = "+";
-            }else if(str.contains("-")){
-                opr = "-";
-            }else if(str.contains("*")) {
-                opr = "*";
-            }else if(str.contains("/")) {
-                opr = "/";
-            }return opr;
-        }
-
-        public static int findIndexOfOperator(String str){
-            int oprIndex = -1;
-            if(str.contains("+")){
-                oprIndex = str.indexOf('+');
-            }else if(str.contains("-")){
-                oprIndex = str.indexOf('-');
-            }else if(str.contains("*")) {
-                oprIndex = str.indexOf('*');
-            }else if(str.contains("/")) {
-                oprIndex = str.indexOf('/');
-            }return oprIndex;
-    }
 }

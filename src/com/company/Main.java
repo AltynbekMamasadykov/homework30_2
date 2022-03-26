@@ -38,22 +38,9 @@ public class Main {
             String strResult = "";
             int indexOfOperator = -1;
             String operator = "";
+            operator = assignOperator(operation);
+            indexOfOperator = findIndexOfOperator(operation);
 
-            //-------------------- assigning operator -------------------------
-
-            if(operation.contains("+")){
-                indexOfOperator = operation.indexOf('+');
-                operator = "+";
-            }else if(operation.contains("-")){
-                indexOfOperator = operation.indexOf('-');
-                operator = "-";
-            }else if(operation.contains("*")) {
-                indexOfOperator = operation.indexOf('*');
-                operator = "*";
-            }else if(operation.contains("/")) {
-                indexOfOperator = operation.indexOf('/');
-                operator = "/";
-            }
 
             //-------------------- checking for valid operator -------------------
 
@@ -113,4 +100,32 @@ public class Main {
                 }
             }
         }
+
+        //---------------------------  methods ------------------------------------
+
+        public  static String assignOperator(String str){
+            String opr = "";
+            if(str.contains("+")){
+                opr = "+";
+            }else if(str.contains("-")){
+                opr = "-";
+            }else if(str.contains("*")) {
+                opr = "*";
+            }else if(str.contains("/")) {
+                opr = "/";
+            }return opr;
+        }
+
+        public static int findIndexOfOperator(String str){
+            int oprIndex = -1;
+            if(str.contains("+")){
+                oprIndex = str.indexOf('+');
+            }else if(str.contains("-")){
+                oprIndex = str.indexOf('-');
+            }else if(str.contains("*")) {
+                oprIndex = str.indexOf('*');
+            }else if(str.contains("/")) {
+                oprIndex = str.indexOf('/');
+            }return oprIndex;
+    }
 }

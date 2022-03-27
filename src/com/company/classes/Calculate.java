@@ -19,9 +19,9 @@ public class Calculate {
       }
 
 
-      public static void calculateArabic(String firstNumber,String secondNumber,String opr){
+      public static void calculateArabic(String firstNumber,String secondNumber,String operator){
           int result = 0;
-          switch (opr) {
+          switch (operator) {
               case "+" -> result = Integer.parseInt(firstNumber) + Integer.parseInt(secondNumber);
               case "-" -> result = Integer.parseInt(firstNumber) - Integer.parseInt(secondNumber);
               case "*" -> result = Integer.parseInt(firstNumber) * Integer.parseInt(secondNumber);
@@ -33,33 +33,33 @@ public class Calculate {
                       return;
                   }
               }
-          }System.out.println(firstNumber+" "+opr+" "+secondNumber+" = "+result);
+          }System.out.println(firstNumber+" "+operator+" "+secondNumber+" = "+result);
 
       }
 
     public  static String assignOperator(String str){
-        String opr = "";
+        String operator = "";
         if(str.contains("+")){
-            opr = "+";
+            operator = "+";
         }else if(str.contains("-")){
-            opr = "-";
+            operator = "-";
         }else if(str.contains("*")) {
-            opr = "*";
+            operator = "*";
         }else if(str.contains("/")) {
-            opr = "/";
-        }return opr;
+            operator = "/";
+        }return operator;
     }
 
     public static int findIndexOfOperator(String str){
-        int oprIndex = -1;
+        int indexOfOperator = -1;
         if(str.contains("+")){
-            oprIndex = str.indexOf('+');
+            indexOfOperator = str.indexOf('+');
         }else if(str.contains("-")){
-            oprIndex = str.indexOf('-');
+            indexOfOperator = str.indexOf('-');
         }else if(str.contains("*")) {
-            oprIndex = str.indexOf('*');
+            indexOfOperator = str.indexOf('*');
         }else if(str.contains("/")) {
-            oprIndex = str.indexOf('/');
-        }return oprIndex;
+            indexOfOperator = str.indexOf('/');
+        }return indexOfOperator;
     }
 }

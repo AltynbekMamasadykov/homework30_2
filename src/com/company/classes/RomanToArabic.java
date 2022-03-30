@@ -28,5 +28,4 @@ public class RomanToArabic {
         }
         return sum += romanToArabicMap.get(stringNumber.charAt(len));
     }
-
 }
